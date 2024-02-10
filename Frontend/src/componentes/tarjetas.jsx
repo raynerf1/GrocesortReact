@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
+import axios from 'axios';
 import './tarjetas.css';
 
 export default function TarjetasSecciones() {
   const [data, setData] = useState([]);
+  const [inputData, setInputData] = useState({ seccion: "" });
 
   useEffect(() => {
     fetch('http://localhost:8081/secciones')
@@ -11,14 +13,31 @@ export default function TarjetasSecciones() {
       .catch(err => console.log(err));
   }, []);
 
+  function handleClick(event) {
+    const h3Element = event.currentTarget.querySelector('h3.nombreSeccion');
+    const valorTexto = h3Element.textContent.trim();
+    console.log( valorTexto);
+    
+  axios.post('http://localhost:8081/subseccion', { seccionNombre: valorTexto })
+  .then(response => {
+    console.log('Respuesta del servidor:', response.data);
+  })
+  .catch(error => {
+    console.error('Error al enviar el valor al servidor:', error);
+  });
+  }
+
   const secciones = data.map(seccion => (
     <div className="col" key={seccion.id}>
-      <div className="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg" style={{backgroundImage: `url('${seccion.imagen}')`}}>
+      <div className="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg" style={{ backgroundImage: `url('${seccion.imagen}')` }} onClick={handleClick}>
         <div className="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1 seccion">
-          <h3 className="pt-5 mt-5 mb-2 display-6 lh-1 fw-bold">{seccion.nombreutf != null ? seccion.nombreutf : seccion.nombre}</h3>
-          <ul className="d-flex list-unstyled mt-auto">
-
-          </ul>
+          <form >
+            <input type="hidden" name="seccionNombre" value={seccion.nombre}  />
+            <h3 className="pt-5 mt-5 mb-2 display-6 lh-1 fw-bold nombreSeccion" >
+              {seccion.nombreutf != null ? seccion.nombreutf : seccion.nombre}
+            </h3>
+          </form>
+          <ul className="d-flex list-unstyled mt-auto"></ul>
         </div>
       </div>
     </div>
@@ -34,5 +53,5 @@ export default function TarjetasSecciones() {
       </div>
     </section>
   );
-  
 }
+
