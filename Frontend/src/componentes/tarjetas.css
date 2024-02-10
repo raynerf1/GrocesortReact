@@ -1,0 +1,30 @@
+.display-6 {
+    font-size: 2.2rem;
+    background-color: rgba(0, 0, 0, .35);
+    text-align: center;
+    padding: 0 auto;
+}
+
+.seccion:hover .display-6 {
+  background-color: rgba(0, 0, 0, .45);
+  cursor: pointer;
+}
+.seccion:hover{
+  cursor: pointer;
+}
+
+@media (min-width: 0px) {
+    .display-6 {
+      font-size: 1.8rem;
+    }
+}
+@media (min-width: 768px) {
+    .display-6 {
+      font-size: 2rem;
+    }
+}
+@media (min-width: 1200px) {
+    .display-6 {
+      font-size: 2.2rem;
+    }
+}
