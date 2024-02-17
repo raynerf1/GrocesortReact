@@ -3,6 +3,7 @@ import Index from './paginas/index';
 import Sobremi from './paginas/sobremi'
 import ErrorPagina from './paginas/error'
 import Secciones from './paginas/secciones'
+import Subsecciones from './paginas/subsecciones'
 
 export default function App(){
   return(
@@ -14,6 +15,7 @@ export default function App(){
           <Route path='/sobremi' element={<Sobremi />}/>
           <Route path='/sobremi' element={<Sobremi />}/>
           <Route path='/secciones' element={<Secciones />}/>
+          <Route path='/subsecciones' element={<Subsecciones />}/>
           <Route path='*' element={<ErrorPagina />}/>
         </Routes>
       </BrowserRouter>
