@@ -27,18 +27,17 @@ export default function Productos() {
         enlace5=''/>
 
             <div className="container">
-                <div className="row pt-5">
+                <div className="row">
                     {productosData.map(producto => (
-                        <div className="col" key={producto.id}>
-                            <div className="card">
-                                <img src={producto.imagen} className="card-img-top" alt={producto.nombre} />
-                                <div className="card-body">
-                                    <h5 className="card-title">{producto.nombre}</h5>
-                                    <p className="card-text">{producto.descripcion}</p>
-                                    <p className="card-text">{producto.precio}</p>
-                                </div>
-                            </div>
+                        <div className="card m-3 " style={{ width: '18rem' }}>
+                        <img src={producto.imagen} className="card-img-top" alt="..." />
+                        <div className="card-body">
+                          <b><h5 className="card-title">{producto.producto}</h5></b>
+                          <b><h5 className="card-title">{producto.precio} €</h5></b>
+                          <p className="card-text">{producto.descripcion}</p>
+                          <a href={producto.enlace} target='_blank' rel="noreferrer" className="btn btn-primary">Ver en la tienda</a>
                         </div>
+                      </div>
                     ))}
                 </div>
             </div>
